@@ -34,6 +34,6 @@ public class WebViewTriggerAnchorGOComponent : MonoBehaviour
 	private void SpawnWebviewTrigger()
 	{
 		GameObject go = Instantiate(webViewTriggerPrefab, this.transform.position, Quaternion.identity);
-		go.GetComponent<WebViewTriggerComponent>().SetURL(url);
+		//go.GetComponent<WebViewTriggerComponent>().SetURL(url);
 	}
 }

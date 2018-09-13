@@ -13,12 +13,10 @@ public class FirstPersonUIComponent : MonoBehaviour
 	public GameObject helpFullGO;
 
 	public GameObject gameUIGO;
-	public GameObject webViewUIGO;
 
 	public CharacterMotor characterMotorRef;
 
 	// TODO needs #define
-	public ZenFulcrum.EmbeddedBrowser.Browser browser;
 
 	public float helpHintStartDelay = 4.0f;
 	public float helpHintDuration = 5.0f;
@@ -28,8 +26,6 @@ public class FirstPersonUIComponent : MonoBehaviour
 		helpHintGO.SetActive(false);
 		helpFullGO.SetActive(false);
 		gameUIGO.SetActive(true);
-		webViewUIGO.SetActive(false);
-		browser.Url = "https://www.timewalk.org/";
 		Invoke("OnStartHint", helpHintStartDelay);
 	}
 
@@ -37,14 +33,12 @@ public class FirstPersonUIComponent : MonoBehaviour
 	{
 		Missive.AddListener<YearDataMissive>(OnYearData);
 		Missive.AddListener<HelpMissive>(OnHelp);
-		Missive.AddListener<WebViewMissive>(OnWebView);
 	}
 
 	private void OnDisable()
 	{
 		Missive.RemoveListener<YearDataMissive>(OnYearData);
 		Missive.RemoveListener<HelpMissive>(OnHelp);
-		Missive.RemoveListener<WebViewMissive>(OnWebView);
 	}
 
 	public void CloseWebView()
@@ -63,14 +57,11 @@ public class FirstPersonUIComponent : MonoBehaviour
 		if (missive.url != "")
 		{
 			gameUIGO.SetActive(false);
-			webViewUIGO.SetActive(true);
-			browser.Url = missive.url;
 			ToggleFPSControl(false);
 		}
 		else
 		{
 			gameUIGO.SetActive(true);
-			webViewUIGO.SetActive(false);
 			ToggleFPSControl(true);
 		}
 	}
